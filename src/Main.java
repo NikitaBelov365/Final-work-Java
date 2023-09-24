@@ -1,17 +1,35 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        System.out.println("Привет!");
+        System.out.println("Что вы хотите сделать?");
+        System.out.println("Посмотреть игрушки в базе данных - введите 1");
+        System.out.println("Добавить игрушку в базу данных - введите 2");
+        System.out.println("Изменить дроп рейт игрушки - введите 3");
+        System.out.println("Запустить розыгрыш игрушек - введите 4");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        String inputNumber = "0";
+        try {
+            Scanner scanner = new Scanner(System.in);
+            boolean confirm = false;
+            while (!confirm) {
+                System.out.println("Введите число от 1 до 4: ");
+                inputNumber = scanner.nextLine().strip();
+                if (inputNumber.equals("1") || inputNumber.equals("2") || inputNumber.equals("3") || inputNumber.equals("4")) {
+                    confirm = true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Ошибка сканнера: " + e.getMessage());
         }
+        int inputNum = Integer.parseInt(inputNumber);
+        switch (inputNum){
+            case 1 -> ReadDB.readDB();
+            case 2 -> AddToy.addingToys();
+            case 3 -> DropRateChange.dropRateChange();
+            case 4 -> RafflePrizes.rafflePrizes();
+        }
+
     }
 }
